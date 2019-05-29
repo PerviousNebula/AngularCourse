@@ -1,0 +1,12 @@
+<h1 class="animated fadeIn fast">Buscador de Héroes <small>Marvel y DC</small></h1>
+<hr>
+<div class="row animated fadeIn" *ngIf="!heroesResult.length">
+    <div class="col-md-12">
+        <div class="alert alert-info">
+            No existen resultados con el término: {{ termino }}
+        </div>
+    </div>
+</div>
+<div class="card-columns">
+    <app-heroe-tarjeta (heroeSeleccionado)="showHeroe(heroe.id)" [heroe]="heroe" [index]="heroe.id" *ngFor="let heroe of heroesResult; let i = index;"></app-heroe-tarjeta>
+</div>
