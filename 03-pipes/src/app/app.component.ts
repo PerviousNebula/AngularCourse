@@ -28,4 +28,6 @@ export class AppComponent {
   fecha                =  new Date();
   nombre2:string       =  "arTuRo neVareZ vILLa";
   video:string         =  "1QJLTp8587o";
+  password:string      =  "pass1234";
+  activar:boolean      =  true;
 }
