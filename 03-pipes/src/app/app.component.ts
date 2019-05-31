@@ -25,4 +25,7 @@ export class AppComponent {
       resolve("Llegó la data!");
     },3500);
   });
+  fecha                =  new Date();
+  nombre2:string       =  "arTuRo neVareZ vILLa";
+  video:string         =  "1QJLTp8587o";
 }
