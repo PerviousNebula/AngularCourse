@@ -12,6 +12,8 @@ import { ArtistComponent } from './components/artist/artist.component';
 //Routes
 import { RouterModule } from "@angular/router";
 import { APP_ROUTES } from "./app.routes";
+import { NoimagePipe } from './pipes/noimage.pipe';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { APP_ROUTES } from "./app.routes";
     NavbarComponent,
     HomeComponent,
     SearchComponent,
-    ArtistComponent
+    ArtistComponent,
+    NoimagePipe,
+    CardComponent
   ],
   imports: [
     BrowserModule,
