@@ -3,5 +3,6 @@
         <input #artistName type="text" (keyup)="searchArtist(artistName.value)" class="form-control" placeholder="Search an Artist" />
     </div>
 </div>
+<app-error class="mt-5" *ngIf="this.error.status" [error]="this.error"></app-error>
 <app-loading class="mt-5" *ngIf="searching"></app-loading>
 <app-card *ngIf="!searching" [items]="this.artists"></app-card>

@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
 })
 export class SpotifyService {
 
-  accessToken:string  =  "BQC62ucb8O56Zyrtm8c9izlDvM5UYGDT44t957DnuwbkxSKvAfwtLR--4dBV138aYw41YwEzhLsVGagrDsw";
+  accessToken:string  =  "BQAoMAb1_ikhmae0_O3C7wEnMxaTF1s5DIEsS5FYW4IQ0gQC5GIQxlGGrgS0XXgG6o4fElXfmqBp5bubpiM";
 
   constructor(private httpCliente:HttpClient) {}
 
@@ -23,5 +23,13 @@ export class SpotifyService {
 
   getSearchedArtists(artistName:string):any {    
     return this.getQuery(`search?q=${artistName}&type=artist&limit=20&offset=5`).pipe(map(data => data['artists'].items));
+  }
+
+  getArtist(id:string):any {
+    return this.getQuery(`artists/${id}`);
+  }
+
+  getArtistTopTracks(id:string):any {
+    return this.getQuery(`artists/${id}/top-tracks?country=MX`).pipe(map(data  =>  data['tracks']));
   }
 }
