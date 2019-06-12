@@ -7,6 +7,8 @@ import { Auth0Service } from 'src/app/services/auth0.service';
 })
 export class NavbarComponent implements OnInit {
 
+  userProfile:any;
+
   constructor(public _auth0Service:Auth0Service) { }
 
   ngOnInit() { }

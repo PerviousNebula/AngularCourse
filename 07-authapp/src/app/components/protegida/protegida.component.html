@@ -1,3 +1,14 @@
-<p>
-  protegida works!
-</p>
+<div class="row" *ngIf="profile">
+    <div class="col-md-4">
+        <img [src]="profile | noimage" [alt]="profile.name" class="img img-fluid img-thumbnail">
+    </div>
+    <div class="col-md-8">
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Nombre: </strong>{{ profile.given_name }}</li>
+            <li class="list-group-item"><strong>Apellidos: </strong>{{ profile.family_name }}</li>
+            <li class="list-group-item"><strong>Idioma: </strong>{{ profile.locale | uppercase }}</li>
+            <li class="list-group-item"><strong>Nickname: </strong>{{ profile.nickname }}</li>
+            <li class="list-group-item"><strong>Última conexión: </strong>{{ profile.updated_at | date:'full' }}</li>
+        </ul>
+    </div>
+</div>

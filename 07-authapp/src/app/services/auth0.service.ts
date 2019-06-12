@@ -10,13 +10,14 @@ export class Auth0Service {
   private _idToken: string;
   private _accessToken: string;
   private _expiresAt: number;
+  public userProfile:any;
 
   auth0 = new auth0.WebAuth({
     clientID: 'knJEwHAR9d9Sbl533riDf1jZ97aB1mdx',
     domain: 'naturalgrown.auth0.com',
     responseType: 'token id_token',
     redirectUri: 'http://localhost:4200/callback',
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor(public router: Router) {
@@ -41,10 +42,10 @@ export class Auth0Service {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {        
         window.location.hash = '';
-        this.localLogin(authResult);
+        this.localLogin(authResult);        
         this.router.navigate(['/home']);
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']);        
         console.log(err);
       }
     });
@@ -84,6 +85,20 @@ export class Auth0Service {
     // Check whether the current time is past the
     // access token's expiry time
     return this._accessToken && Date.now() < this._expiresAt;
+  }
+
+  public getProfile(cb): void {
+    if (!this._accessToken) {
+      throw new Error('Access Token must exist to fetch profile');
+    }
+  
+    const self = this;
+    this.auth0.client.userInfo(this._accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 
 }

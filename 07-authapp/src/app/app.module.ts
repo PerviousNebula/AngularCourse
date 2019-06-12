@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -13,6 +13,13 @@ import { APP_ROUTING } from './app.routes';
 
 //Services
 import { Auth0Service } from './services/auth0.service';
+import { NoimagePipe } from './pipes/noimage.pipe';
+
+//Date in spanish
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
+
 
 @NgModule({
   declarations: [
@@ -20,14 +27,16 @@ import { Auth0Service } from './services/auth0.service';
     NavbarComponent,
     HomeComponent,
     ProtegidaComponent,
-    PreciosComponent
+    PreciosComponent,
+    NoimagePipe
   ],
   imports: [
     BrowserModule,
     APP_ROUTING
   ],
   providers: [
-    Auth0Service
+    Auth0Service,
+    { provide: LOCALE_ID, useValue: 'es' }
   ],
   bootstrap: [AppComponent]
 })

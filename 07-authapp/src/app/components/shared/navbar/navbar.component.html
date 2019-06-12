@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">AuthApp</a>
+    <a class="navbar-brand" href="#">
+        <img src="src/assets/img/banner.png" width="30" height="30" class="d-inline-block align-top" alt=""> AuthApp
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,14 +14,13 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['precios']">Precios</a>
             </li>
-            <li class="nav-item" routerLinkActive="active">
+            <li class="nav-item" routerLinkActive="active" *ngIf="_auth0Service.isAuthenticated()">
                 <a class="nav-link" [routerLink]="['protegida']">Protegida</a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
             <span *ngIf="!_auth0Service.isAuthenticated()" class="mr-2" (click)="_auth0Service.login()" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-user my-2 my-sm-0 fa-lg"></i></span>
             <span *ngIf="_auth0Service.isAuthenticated()" (click)="_auth0Service.logout()" [ngStyle]="{'cursor': 'pointer'}"><i class="fa fa-sign-out-alt fa-lg"></i></span>
-            <button (click)="show()">CheckLogin</button>
         </div>
     </div>
-</nav>t
+</nav>
