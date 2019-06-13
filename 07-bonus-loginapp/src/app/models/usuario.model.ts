@@ -18,5 +18,5 @@ export class UsuarioModel {
     set Nombre(nombre:string) { this.nombre = nombre; }
     get Nombre():string { return this.nombre; }
 
-    public toString():string { return `Usuario:{email:${this.email},password:${this.password},nombre:${this.nombre}}`; }
+    public toString():string { return `Usuario:{email:${this.email},password:${this.password},nombre:${this.nombre}}`; }        
 }
