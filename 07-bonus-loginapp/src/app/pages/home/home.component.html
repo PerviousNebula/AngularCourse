@@ -1,3 +1,10 @@
-<p>
-  home works!
-</p>
+<nav class="navbar navbar-dark bg-dark" [ngStyle]="{'color': 'white'}">
+    <a class="navbar-brand">LoginApp</a>
+    <div class="form-inline">
+        <button class="btn btn-outline-danger btn-sm my-2 my-sm-0" (click)="_authService.logout()">Logout</button>
+    </div>
+</nav>
+<div class="container mt-4">
+    <h1>Mi aplicación <small>secreta</small></h1>
+    <hr>
+</div>
