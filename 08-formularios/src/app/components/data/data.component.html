@@ -1,3 +1,50 @@
-<p>
-  data works!
-</p>
+<form [formGroup]="forma" (ngSubmit)="enviarForm()">
+    <div formGroupName="nombreCompleto">
+        <div class="form-group row" [ngClass]="{'has-danger': forma.get('nombreCompleto.nombre').invalid && !forma.get('nombreCompleto.nombre').untouched }">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+                <div class="form-control-feedback" *ngIf="forma.get('nombreCompleto.nombre').errors?.required && !forma.get('nombreCompleto.nombre').untouched">
+                    Este campo es obligatorio
+                </div>
+                <div class="form-control-feedback" *ngIf="forma.get('nombreCompleto.nombre').errors?.minlength && !forma.get('nombreCompleto.nombre').untouched">
+                    Por lo menos {{ forma.get('nombreCompleto.nombre').errors.minlength.requiredLength }} caracteres
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{'has-danger': forma.get('nombreCompleto.apellido').invalid && !forma.get('nombreCompleto.apellido').untouched}">
+            <label class="col-2 col-form-label">Apellido</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+                <div class="form-control-feedback" *ngIf="forma.get('nombreCompleto.apellido').errors?.required && !forma.get('nombreCompleto.apellido').untouched">
+                    Este campo es obligatorio
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{'has-danger': forma.controls.correo.invalid && !forma.controls.correo.untouched}">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+            <div class="form-control-feedback" *ngIf="forma.controls.correo.errors?.required && forma.controls.correo.touched">
+                Este campo es obligatorio
+            </div>
+            <div class="form-control-feedback" *ngIf="forma.controls.correo.errors?.pattern && forma.controls.correo.touched">
+                Esta no es una dirección de correo válida
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="forma.invalid">Guardar</button>
+        </div>
+    </div>
+</form>
+
+<div>
+    {{ forma.valid }}
+</div>

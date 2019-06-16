@@ -22,7 +22,7 @@ import { Form } from '@angular/forms';
       90% { transform: translate(1px, 2px) rotate(0deg); }
       100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
-  
+
   `]
 })
 export class TemplateComponent {
@@ -30,8 +30,13 @@ export class TemplateComponent {
   usuario:any = {
     nombre:null,
     apellido:null,
-    correo:null
+    correo:null,
+    pais:"",
+    sexo:null,
+    terminos:false
   };
+
+  paises:any[] = [{nombre:"Mexico",codigo:"MX"},{nombre:"Estados Unidos",codigo:"USA"},{nombre:"Canada",codigo:"CAN"}];
 
   constructor() { }
 
