@@ -30,10 +30,24 @@ export class HeroesService {
   }
 
   public getHeroes():Observable<any> {
-    return this.http.get(`${this.url}/heroes.json`).pipe(map((data:any) => {
-      console.log("data",data);
-      data  =  Object.values(data);
-      return data;
-    }));
+    return this.http.get(`${this.url}/heroes.json`).pipe(map((data:any) => data  =  this.convertHeroesToArry(data)));
+  }
+
+  public getHeroe(id:string):Observable<any> {
+    return this.http.get(`${this.url}/heroes/${id}.json`);
+  }
+
+  public deleteHeroe(id:string):Observable<any> {
+    return this.http.delete(`${this.url}/heroes/${id}.json`);
+  }
+
+  private convertHeroesToArry(heroes:any):Array<any> {
+    const heroesArry:Array<any>  =  [];
+    Object.keys(heroes).forEach(key => {
+      const heroeTemp  =  heroes[key];
+      heroeTemp.id     =  key;
+      heroesArry.push(heroeTemp);
+    });
+    return heroesArry;
   }
 }

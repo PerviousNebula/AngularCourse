@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HeroesService } from 'src/app/services/heroes.service';
 
 import Swal from 'sweetalert2'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-heroe',
@@ -34,8 +35,11 @@ export class HeroeComponent implements OnInit {
   heroe:HeroeModel;
   formHeroe:FormGroup;
   loading:boolean;
+  routeId:string;
 
-  constructor(private _heroeService:HeroesService) { 
+  constructor(private _heroeService:HeroesService,
+              private router:ActivatedRoute) { 
+    this.routeId    =  this.router.snapshot.paramMap.get('id');
     this.loading    =  false;
     this.heroe      =  new HeroeModel();
     this.formHeroe  =  new FormGroup({
@@ -47,6 +51,12 @@ export class HeroeComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.routeId  !== 'nuevo') {
+      this._heroeService.getHeroe(this.routeId).subscribe((data:any) => {
+        this.formHeroe.patchValue({id:this.routeId});
+        this.formHeroe.patchValue(data);
+      });      
+    }
   }
 
   guardarHeroe():void {
@@ -81,5 +91,4 @@ export class HeroeComponent implements OnInit {
       }      
     }
   }
-
 }

@@ -23,10 +23,13 @@
                     <th scope="row">{{ i+1 }}</th>
                     <td>{{ heroe.nombre }}</td>
                     <td>{{ heroe.poder }}</td>
-                    <td>{{ heroe.vivo }}</td>
+                    <td>
+                        <h5 *ngIf="heroe.vivo"><span class="badge badge-success">Vivo</span></h5>
+                        <h5 *ngIf="!heroe.vivo"><span class="badge badge-danger">Muerto</span></h5>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-sm btn-success mr-1" [routerLink]="['/heroe',heroe.id]" routerLinkActive="router-link-active"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-sm btn-danger" (click)="deleteHeroe(heroe.id,i)"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
