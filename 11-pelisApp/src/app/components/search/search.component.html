@@ -1,0 +1,17 @@
+<div class="container mt-5 annimated fadeIn">
+    <form class="mb-5" #searchForm="ngForm" (ngSubmit)="filterMovies()">
+        <input name="titulo" class="form-control" type="text" placeholder="Título" [(ngModel)]="filter" />
+    </form>
+
+    <div class="card-columns" *ngIf="movies && !loading">
+        <div class="card animated fadeIn fast" *ngFor="let movie of movies">
+            <img [src]="movie | noimage" class="card-img-top" [alt]="movie.title">
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.title }}</h5>
+                <p class="card-text">{{ movie.overview | slice:0:250}}...</p>
+                <p class="card-text"><button class="btn btn-outline-primary btn-block" (click)="showMovie(movie.id)">Ver más</button></p>
+            </div>
+        </div>
+    </div>
+    <img *ngIf="loading" src="../../../assets/images/logo.png" class="ld ld-surprise centered" width="120" height="120" />
+</div>

@@ -1,0 +1,37 @@
+<div class="jumbotron jumbotron-fluid jb-bg animated fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <img appHover src="../../../assets/images/logo.png" alt="logo">
+            </div>
+            <div class="col">
+                <h1 class="display-4">Descubre películas en segundos</h1>
+                <p class="lead">Encuentra las películas más vistas, con mejor calificación y recientes en un sólo click</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="cinemaListings">
+    <h1 class="font-qs-title">En la cartelera</h1>
+    <hr>
+    <div class="card-columns">
+        <app-card *ngFor="let movie of cinemaListings | slice:0:6" [movie]="movie"></app-card>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="releases">
+    <h1 class="font-qs-title">Próximos lanzamientos</h1>
+    <hr>
+    <div class="card-columns">
+        <app-card *ngFor="let release of releases | slice:0:6" [movie]="release"></app-card>
+    </div>
+</div>
+
+<div class="container" *ngIf="kidsMovies">
+    <h1 class="font-qs-title">Populares entre los pequeños</h1>
+    <hr>
+    <div class="card-columns">
+        <app-card *ngFor="let movie of kidsMovies | slice:0:6" [movie]="movie"></app-card>
+    </div>
+</div>
